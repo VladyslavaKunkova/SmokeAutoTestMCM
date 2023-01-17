@@ -20,25 +20,25 @@ describe("Smoke MCM", () => {
         })
 
 
-        it("Visible diagram 'Total customers in the database CRM'", () => {
+        it("Verify visible Total customers in the database CRM diagram", () => {
 
                 cy.get(".highchart.col-xs-7", {timeout:5000}).should("be.visible");
         })
 
 
-        it("Visible diagram 'Types of distributions'", () => {
+        it("Verify visible Types of distributions diagram", () => {
 
                 cy.get(".highchart.col-xs-5").should("be.visible");
         })
 
 
-        it("Visible diagram 'Target audiences'", () => {
+        it("Verify visible Target audiences diagram", () => {
 
                 cy.get(".highchart.height").should("be.visible");
         })
 
 
-        it("Create Sms content", () => {
+        it("Verify create Sms content", () => {
 
                 cy.contains("Content")
                 .should('be.visible')
@@ -64,9 +64,13 @@ describe("Smoke MCM", () => {
                 .type('Hello, %FIRSTNAME%  %LASTNAME%, this is AutoTestSms');
                 
                 cy.get('#edit-sms > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click();
+
+                cy.get('.col-xs-12')
+                cy.contains("AutoTestSms_vl")
+                .should('be.visible');
     })
     
-        it("Create Viber content", () => {
+        it("Verify create Viber content", () => {
 
                 cy.contains("Content")
                 .should('be.visible')
@@ -92,9 +96,13 @@ describe("Smoke MCM", () => {
                 .type('Hello, %FIRSTNAME% %LASTNAME%, this is AutoTestViber');
     
                 cy.get('#edit-viber > .modal-dialog > .modal-content > .modal-footer > .btn-primary').click();
+
+                cy.get('.col-xs-12')
+                cy.contains("AutoTestViber_vl")
+                .should('be.visible');
 })
 
-       it("Create Target Audience", () => {
+       it("Verify create Target Audience", () => {
 
                 cy.contains("Target Audience")
                 .should('be.visible')
@@ -127,9 +135,13 @@ describe("Smoke MCM", () => {
                 .should('be.visible')
                 .click();
 
+                cy.get('.col-xs-12')
+                cy.contains("TAforAutoTest_vl")
+                .should('be.visible');
+
         })
 
-        it("Create Distribution SMS", () => {
+       it("Verify create Distribution SMS send now", () => {
 
                 cy.contains("Distribution")
                 .should('be.visible')
@@ -177,9 +189,13 @@ describe("Smoke MCM", () => {
                 cy.get('#distribution > .modal-dialog > .modal-content > .modal-footer > .btn-primary')
                .should('be.visible')
                .click();
+
+               cy.get('[ng-show="ctrl.mode === ctrl.mode_types.distributions"] > .row > .col-xs-12')
+               .contains("AutoTestSms_vl")
+               .should('be.visible');
         })
 
-        it("Create Distribution Viber", () => {
+        it("Verify create Distribution Viber send now", () => {
 
                 cy.contains("Distribution")
                 .should('be.visible')
@@ -227,9 +243,13 @@ describe("Smoke MCM", () => {
                 cy.get('#distribution > .modal-dialog > .modal-content > .modal-footer > .btn-primary')
                .should('be.visible')
                .click();
+
+               cy.get('[ng-show="ctrl.mode === ctrl.mode_types.distributions"] > .row > .col-xs-12')
+               .contains("AutoTestViber_vl")
+               .should('be.visible');
         })
 
-        it("Create Distribution Email", () => {
+        it("Verify create Distribution Email send now", () => {
 
                 cy.contains("Distribution")
                 .should('be.visible')
@@ -277,5 +297,10 @@ describe("Smoke MCM", () => {
                 cy.get('#distribution > .modal-dialog > .modal-content > .modal-footer > .btn-primary')
                .should('be.visible')
                .click();
+
+               cy.get('[ng-show="ctrl.mode === ctrl.mode_types.distributions"] > .row > .col-xs-12')
+               .contains("AutoTestEmail_vl")
+               .should('be.visible');
+
         })
 })
